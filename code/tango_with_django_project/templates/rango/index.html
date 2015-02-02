@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-{% load staticfiles %}
 <html>
     <head>
         <title>Rango</title>
     </head>
     <body>
-        <h1>Rango says...</h1>
-        Hello world! <strong>{{ boldmessage }}</strong>
+        <h1>Rango</h1>
+        <h2>Top Categories</h2>
+        {% if categories %}
+        <ol>
+            {% for category in categories %}
+            <li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
+            {% endfor %}
+        </ol>
+        {% else %}
+        <strong>There are no categories present</strong>
+        {% endif %}
+        <h2>Top Pages</h2>
+        {% if pages %}
+        <ol>
+            {% for page in pages %}
+            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+            {% endfor %}
+        </ol>
+        {% else %}
+        <strong>There are no pages present</strong>
+        {% endif %}
         <br/>
-        <a href="/rango/about">About</a>
-        <br/>
-        <img src="{% static "images/kitten.jpeg" %}" alt="kitten"/>
+        <a href="/rango/about/">About</a>
     </body>
 </html>

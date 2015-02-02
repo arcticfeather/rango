@@ -14,19 +14,22 @@ def populate():
     add_page(
         cat=python_cat,
         title="Offical Python Tutorial",
-        url="http://docs.python.org/2/tutorial"
+        url="http://docs.python.org/2/tutorial",
+        views=64
     )
 
     add_page(
         cat=python_cat,
         title="How To Think Like A Computer Scientist",
-        url="http://www.greenteapress.com/thinkpython/"
+        url="http://www.greenteapress.com/thinkpython/",
+        views=128
     )
 
     add_page(
         cat=python_cat,
         title="Learn Python In 10 Minutes",
-        url="http://www.korokithakis.net/tutorials/python"
+        url="http://www.korokithakis.net/tutorials/python",
+        views=40
     )
 
     django_cat = add_cat(
@@ -38,19 +41,22 @@ def populate():
     add_page(
         cat=django_cat,
         title="Official Django Tutorial",
-        url="http://docs.djangoproject.com/en/1.7/intro/tutorial01/"
+        url="http://docs.djangoproject.com/en/1.7/intro/tutorial01/",
+        views=55
     )
 
     add_page(
         cat=django_cat,
         title="Django Rocks",
-        url="http://www.djangorocks.com/"
+        url="http://www.djangorocks.com/",
+        views=250
     )
 
     add_page(
         cat=django_cat,
         title="How To Tango With Django",
-        url="http://www.tangowithdjango.com/"
+        url="http://www.tangowithdjango.com/",
+        views=98
     )
 
     frame_cat = add_cat(
@@ -68,7 +74,8 @@ def populate():
     add_page(
         cat=frame_cat,
         title="Bottle",
-        url="http://bottlepy.org/docs/dev/"
+        url="http://bottlepy.org/docs/dev/",
+        views=5
     )
 
     # Print out what we added
