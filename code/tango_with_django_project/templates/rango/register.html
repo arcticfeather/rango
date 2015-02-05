@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Rango</title>
-    </head>
-    <body>
+{% extends 'rango/base.html' %}
+{% block title %}Register{% endblock %}
+{% block body_block %}
         <h1>Register with Rango</h1>
         {% if registered %}
         <strong>Thank you for registering!</strong>
-        <a href="/rango/">Return to the homepage</a>
+        <a href="{% url 'index' %}">Return to the homepage</a>
         {% else %}
         <strong>Register here!</strong>
         <br/>
@@ -18,5 +15,4 @@
             <input type="submit" name="submit" value="Register"/>
         </form>
         {% endif %}
-    </body>
-</html>
+{% endblock %}

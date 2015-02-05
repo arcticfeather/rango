@@ -1,0 +1,8 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+{% block title %}Restricted Page{% endblock %}
+{% block body_block %}
+        <p>Since you're logged in, you can see this text!</p>
+        <p>As a reward, here's a kitten:</p>
+        <img src="{% static 'images/kitten.jpeg' %}" alt="kitten"/>
+{% endblock %}
