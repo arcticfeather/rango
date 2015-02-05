@@ -5,4 +5,13 @@
         {{ aboutmessage }}
         <br/>
         <img src="/media/smallkitten.jpeg" alt="kitten"/>
+        <br/>
+        <br/>
+        {% if visits %}
+            {% if visits == 1 %}
+        You have visited this site <strong>1</strong> times.
+            {% else %}
+        You have visited this site <strong>{{ visits }}</strong> times.
+            {% endif %}
+        {% endif %}
 {% endblock %}

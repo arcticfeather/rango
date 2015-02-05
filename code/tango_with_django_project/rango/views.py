@@ -15,13 +15,14 @@ def index(request):
         "pages": page_list,
     }
 
-    # get number of visits from cookie
-    visits = int(request.COOKIES.get('visits', '1'))
-    print "Visits: {}".format(visits)
+    # get number of visits from session
+    visits = request.session.get('visits')
+    if not visits:
+        visits = 1
     reset_last_visit_time = False
-    response = render(request, 'rango/index.html', context_dict)
-    if 'last_visit' in request.COOKIES:
-        last_visit = request.COOKIES['last_visit']
+
+    last_visit = request.session.get('last_visit')
+    if last_visit:
         last_visit_time = datetime.strptime(last_visit[:-7], "%Y-%m-%d %H:%M:%S")
 
         # if more than one day
@@ -30,19 +31,14 @@ def index(request):
             reset_last_visit_time = True
     else:
         reset_last_visit_time = True
-        context_dict['visits'] = visits
-
-        response = render(request, 'rango/index.html', context_dict)
 
     if reset_last_visit_time:
-        response.set_cookie('last_visit', datetime.now())
-        response.set_cookie('visits', visits)
+        request.session['last_visit'] = str(datetime.now())
+        request.session['visits'] = visits
 
-    # returrn response back to user, updating any cookies that need changed
-    return response
+    context_dict['visits'] = visits
 
-
-
+    return render(request, 'rango/index.html', context_dict)
 
 def category(request, category_name_slug):
     context_dict = {}
@@ -65,7 +61,11 @@ def category(request, category_name_slug):
 
 
 def about(request):
-    context_dict = {"aboutmessage": "This is the about page."}
+    visits = request.session.get('visits')
+    context_dict = {
+        'aboutmessage': "This is the about page.",
+        'visits': visits
+    }
 
     return render(request, 'rango/about.html', context_dict)
 
