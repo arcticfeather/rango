@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^rango/', include('rango.urls')),
     url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^search/', include('haystack.urls')),
 )
 
 if settings.DEBUG:

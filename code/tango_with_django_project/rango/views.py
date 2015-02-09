@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
+from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm, PageSearchForm
 
 def index(request):
     # get top 5 categories by number of likes
@@ -113,3 +113,12 @@ def add_page(request, category_name_slug):
 @login_required
 def restricted(request):
     return render(request, 'rango/restricted.html', {})
+
+def root(request):
+    form = PageSearchForm(request.GET)
+    results = form.search()
+
+    return render(request, 'search/search_root.html',{
+        'search_query': search_query,
+        'pages': results,
+    })

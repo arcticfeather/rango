@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'registration', # django-registration-redux
+    'haystack', # for search
     'rango',
 )
 
@@ -109,3 +110,12 @@ LOGIN_URL = '/accounts/login/'
 # Email settings
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# search settings
+
+HAYSTACK_CONNECTIONS = {
+    'default':{
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index')
+    }
+}

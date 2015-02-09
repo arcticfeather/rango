@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from rango.models import Page, Category, UserProfile
+from haystack.forms import SearchForm
 
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=128, help_text="Please enter the category name")
@@ -44,3 +45,16 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('website', 'picture')
+
+class PageSearchForm(SearchForm):
+
+    def no_query_found(self):
+        return self.searchqueryset.all()
+
+    def search(self):
+        sqs = super(PageSearchForm, self).search()
+
+        if not self.is_valid():
+            return self.no_query_found()
+
+        return sqs
