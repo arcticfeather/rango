@@ -1,7 +1,10 @@
 {% extends 'rango/base.html' %}
-{% block title %}About Rango{% endblock %}
+{% load staticfiles %}
+{% block title %}About{% endblock %}
 {% block body_block %}
-        <h1>About Rango</h1>
+        <div>
+            <h1 class="page-header">About Rango</h1>
+        </div>
         {{ aboutmessage }}
         <br/>
         <br/>
@@ -10,7 +13,7 @@
         <br/>
         {% if visits %}
             {% if visits == 1 %}
-        You have visited this site <strong>1</strong> times.
+        You have visited this site <strong>1</strong> time.
             {% else %}
         You have visited this site <strong>{{ visits }}</strong> times.
             {% endif %}

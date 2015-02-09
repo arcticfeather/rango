@@ -2,28 +2,41 @@
 {% block title %}Rango{% endblock %}
 {% block body_block %}
         {% if user.is_authenticated %}
-        <h1>Hello, {{user.username}}.  Welcome to Rango.</h1>
+        <h1 class="page-header">Hello, {{user.username}}.  Welcome to Rango.</h1>
         {% else %}
-        <h1>Hello, guest.  Welcome to Rango</h1>
+        <h1 class="page-header">Hello, guest.  Welcome to Rango</h1>
         {% endif %}
-        <h2>Top Categories</h2>
-        {% if categories %}
-        <ol>
-            {% for category in categories %}
-            <li><a href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
-            {% endfor %}
-        </ol>
-        {% else %}
-        <strong>There are no categories present</strong>
-        {% endif %}
-        <h2>Top Pages</h2>
-        {% if pages %}
-        <ol>
-            {% for page in pages %}
-            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-            {% endfor %}
-        </ol>
-        {% else %}
-        <strong>There are no pages present</strong>
-        {% endif %}
+        <div class="row placeholder">
+            <div class="col-xs-12 col-sm-6 placeholder">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Top Categories</h2>
+                    </div>
+                </div>
+                {% if categories %}
+                <ol class="list-group">
+                    {% for category in categories %}
+                    <li class="list-group-item"><a href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ol>
+                {% else %}
+                <strong>There are no categories present</strong>
+                {% endif %}
+            </div>
+            <div class="col-xs-12 col-sm-6 placeholder">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Top Pages</h2>
+                    </div>
+                </div>
+                {% if pages %}
+                <ol class="list-group">
+                    {% for page in pages %}
+                    <li class="list-group-item"><a href="{{ page.url }}">{{ page.title }}</a></li>
+                    {% endfor %}
+                </ol>
+                {% else %}
+                <strong>There are no pages present</strong>
+                {% endif %}
+            </div>
 {% endblock %}
