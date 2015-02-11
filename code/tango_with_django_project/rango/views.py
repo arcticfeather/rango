@@ -113,12 +113,3 @@ def add_page(request, category_name_slug):
 @login_required
 def restricted(request):
     return render(request, 'rango/restricted.html', {})
-
-def root(request):
-    form = PageSearchForm(request.GET)
-    results = form.search()
-
-    return render(request, 'search/search_root.html',{
-        'search_query': search_query,
-        'pages': results,
-    })
